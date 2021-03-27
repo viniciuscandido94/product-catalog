@@ -28,10 +28,14 @@ import java.util.Optional;
 public class ProductBusiness {
 
     @Autowired
+    private EntityManager entityManager;
+
     private ProductRepository productRepository;
 
     @Autowired
-    private EntityManager entityManager;
+    public ProductBusiness(ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
 
     public List<ProductResponseDTO> findAll() {
         List<Product> products = productRepository.findAll();
@@ -113,7 +117,7 @@ public class ProductBusiness {
         productRepository.delete(product);
     }
 
-    private Product findAndValidateProduct(Long id)  {
+    public Product findAndValidateProduct(Long id)  {
         Optional<Product> productOptional = productRepository.findById(id);
         if (!productOptional.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product with ID " + id + " doesn't exists");
