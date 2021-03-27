@@ -29,7 +29,7 @@ public class ProductController {
 
     @ApiOperation(value = "find product by id")
     @GetMapping(path="/{id}")
-    public ResponseEntity<ProductResponseDTO> findById(@PathVariable(name = "id", required = true) Long id) throws Exception {
+    public ResponseEntity<ProductResponseDTO> findById(@PathVariable(name = "id", required = true) Long id) {
         ProductResponseDTO productResponseDTO = productService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDTO);
     }
@@ -37,14 +37,14 @@ public class ProductController {
     @ApiOperation(value = "find products by filters (query parameters)",
                   notes = "query parameters example: '?min_price=10.5&max_price=50&q=superget', none of the parameters are required")
     @GetMapping(path="/search")
-    public ResponseEntity<List<ProductResponseDTO>> findBySearch(HttpServletRequest request) throws Exception {
+    public ResponseEntity<List<ProductResponseDTO>> findBySearch(HttpServletRequest request) {
         List<ProductResponseDTO> productResponseDTOList = productService.findBySearch(request);
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDTOList);
     }
 
     @ApiOperation(value = "create product")
     @PostMapping
-    public ResponseEntity<ProductResponseDTO> create(@Valid @RequestBody ProductRequestDTO productRequestDTO) throws Exception {
+    public ResponseEntity<ProductResponseDTO> create(@Valid @RequestBody ProductRequestDTO productRequestDTO) {
         ProductResponseDTO productResponseDTO = productService.create(productRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(productResponseDTO);
     }
@@ -53,7 +53,7 @@ public class ProductController {
     @ApiOperation(value = "update product by id")
     @PutMapping(path="/{id}")
     public ResponseEntity<ProductResponseDTO> update(@PathVariable(name = "id", required = true) Long id,
-                                                     @Valid @RequestBody ProductRequestDTO productRequestDTO) throws Exception {
+                                                     @Valid @RequestBody ProductRequestDTO productRequestDTO) {
         ProductResponseDTO productResponseDTO = productService.update(id, productRequestDTO);
         return ResponseEntity.ok(productResponseDTO);
     }
@@ -61,7 +61,7 @@ public class ProductController {
     @ApiOperation(value = "delete product by id")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public String removeProductById(@PathVariable("id") Long id) throws Exception {
+    public String removeProductById(@PathVariable("id") Long id) {
         productService.removeProductById(id);
         return "Successfully deleted!";
     }

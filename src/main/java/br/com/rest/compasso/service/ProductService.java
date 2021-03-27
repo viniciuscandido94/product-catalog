@@ -20,7 +20,7 @@ public class ProductService {
         return productBusiness.findAll();
     }
 
-    public ProductResponseDTO findById(Long id) throws Exception {
+    public ProductResponseDTO findById(Long id) {
         return productBusiness.findById(id);
     }
 
@@ -34,11 +34,11 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductResponseDTO update(Long id, ProductRequestDTO productRequestDTO) throws Exception {
+    public ProductResponseDTO update(Long id, ProductRequestDTO productRequestDTO) {
         return productBusiness.update(id, productRequestDTO);
     }
 
-    public void removeProductById(Long id) throws Exception {
+    public void removeProductById(Long id) {
         productBusiness.removeProductById(id);
     }
 }

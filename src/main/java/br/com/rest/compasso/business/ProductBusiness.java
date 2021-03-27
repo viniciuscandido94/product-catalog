@@ -42,7 +42,7 @@ public class ProductBusiness {
         return productResponseDTOList;
     }
 
-    public ProductResponseDTO findById(Long id) throws Exception {
+    public ProductResponseDTO findById(Long id) {
         Product product = findAndValidateProduct(id);
         return buildResponse(product);
     }
@@ -101,19 +101,19 @@ public class ProductBusiness {
         return buildResponse(product);
     }
 
-    public ProductResponseDTO update(Long id, ProductRequestDTO productRequestDTO) throws Exception {
+    public ProductResponseDTO update(Long id, ProductRequestDTO productRequestDTO) {
         Product product = findAndValidateProduct(id);
         Product productUpdated = createProduct(productRequestDTO, product);
         return buildResponse(productUpdated);
 
     }
 
-    public void removeProductById(Long id) throws Exception {
+    public void removeProductById(Long id) {
         Product product = findAndValidateProduct(id);
         productRepository.delete(product);
     }
 
-    private Product findAndValidateProduct(Long id) throws Exception {
+    private Product findAndValidateProduct(Long id)  {
         Optional<Product> productOptional = productRepository.findById(id);
         if (!productOptional.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product with ID " + id + " doesn't exists");
