@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  compasso-rest:
+    image: compasso-rest-api
+    ports: 
+      - 9999:9999
+    container_name: CompassoRestApi
+    depends_on:
+      - compasso-database
+    links:
+      - compasso-database
+    networks:
+      - postgres-compose-network
+
+  compasso-database:
+    image: postgres:10.4
+#    volumes:
+#      - "/var/lib/postgresql:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_DB=dbCompasso
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=compassopassword
+    container_name: CompassoDataBase
+    ports:
+      - 15432:5432
+    networks:
+      - postgres-compose-network
+    restart: unless-stopped
+
+  compasso-pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin
+      - PGADMIN_DEFAULT_PASSWORD=123456
+    container_name: CompassoPGAdmin
+    depends_on:
+      - compasso-database
+    ports:
+      - 16543:80
+    networks:
+      - postgres-compose-network
+
+networks:
+  postgres-compose-network:
+    driver: bridge
