@@ -20,7 +20,7 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("Documentation Compasso Rest API - Products")
+                .groupName("Documentation Compasso Rest API - Products Catalog")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.rest.compasso"))
                 .paths(PathSelectors.any())
@@ -32,7 +32,7 @@ public class SwaggerConfig {
     private ApiInfo metaInfo() {
         ApiInfo apiInfo = new ApiInfo(
                 "Compasso Rest API - Products",
-                "Documentation Compasso Rest API - Products",
+                "Documentation Compasso Rest API - Products Catalog",
                 "1.0",
                 "Terms of Service",
                 new Contact("Vinicius", "","viniciuscandidocezar@gmail.com"),
