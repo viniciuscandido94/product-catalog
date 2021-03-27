@@ -2,7 +2,7 @@
 
 Para executar o projeto você terá que:
 * Clonar o projeto
-* Instalar docker e docker-compose
+* Instalar o docker e docker-compose
 * Rodar o bat "run.sh" dentro da raiz do projeto  
 
 Vão ser criados 3 containers:
