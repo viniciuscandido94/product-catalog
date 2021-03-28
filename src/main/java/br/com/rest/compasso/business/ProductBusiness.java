@@ -3,7 +3,6 @@ package br.com.rest.compasso.business;
 import br.com.rest.compasso.DTO.request.ProductRequestDTO;
 import br.com.rest.compasso.DTO.response.ProductResponseDTO;
 import br.com.rest.compasso.entity.Product;
-import br.com.rest.compasso.exception.BusinessException;
 import br.com.rest.compasso.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
