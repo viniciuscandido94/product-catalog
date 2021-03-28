@@ -42,7 +42,7 @@ public class ProductBusinessTest {
         EasyMock.replay(productRepository);
 
         expectedException.expect(ResponseStatusException.class);
-        expectedException.expectMessage("");
+        expectedException.expectMessage("404 NOT_FOUND \"Product with ID 12 doesn't exists\"");
 
         productBusiness.findAndValidateProduct(ID_PRODUCT_INVALID);
     }
